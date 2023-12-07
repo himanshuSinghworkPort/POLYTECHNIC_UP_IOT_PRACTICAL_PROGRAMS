@@ -1,0 +1,120 @@
+// Interfacing Bluetooth module (e.g. HC05)- receiving data from mobile phone on Arduino  
+and display on LCD 
+
+// Write a program to interface LCD and Bluetooth module, to exhibit the values received
+from mobile handset via Bluetooth on LCD.
+
+#include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+
+// Set up the LCD
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // I2C address 0x27, 16 column and 2 rows
+
+// Set up SoftwareSerial for Bluetooth communication
+SoftwareSerial bluetooth(10, 11);  // RX, TX pins for Bluetooth module
+
+void setup() {
+  // Start the LCD and Bluetooth
+  lcd.begin(16, 2);
+  bluetooth.begin(9600);
+
+  // Display a welcome message on the LCD
+  lcd.print("Bluetooth LCD");
+  lcd.setCursor(0, 1);
+  lcd.print("Data: ");
+
+  delay(2000);
+  lcd.clear();
+}
+
+void loop() {
+  // Check if there is data available from the Bluetooth module
+  if (bluetooth.available() > 0) {
+    // Read the incoming data
+    char data = bluetooth.read();
+
+    // Display the received data on the LCD
+    lcd.setCursor(6, 1);  // Set cursor to the second line
+    lcd.print(data);
+  }
+}
+
+
+
+// *************OR*******************ANOTHER CODE
+
+/*
+
+Components Needed:
+Arduino board (e.g., Arduino Uno)
+Bluetooth module (e.g., HC-05)
+LCD display (e.g., 16x2 character LCD)
+Mobile phone with Bluetooth capabilities
+Jumper wires
+Steps:
+1. Connect the HC-05 Bluetooth Module to Arduino:
+Connect VCC to 5V on Arduino.
+Connect GND to GND on Arduino.
+Connect TXD to digital pin 10 on Arduino.
+Connect RXD to digital pin 11 on Arduino.
+2. Connect the LCD to Arduino:
+Connect VCC to 5V on Arduino.
+Connect GND to GND on Arduino.
+Connect SDA to a digital pin (e.g., A4 on Arduino Uno).
+Connect SCL to another digital pin (e.g., A5 on Arduino Uno).
+3. Install Required Libraries:
+Install the "LiquidCrystal_I2C" library for the LCD. You can do this through the Arduino IDE's Library Manager.
+Make sure to have the "SoftwareSerial" library for the Bluetooth module.
+4. Write the Arduino Code:
+Here's a simple example code to get you started. 
+This code assumes that the Bluetooth module
+ is connected to pins 10 (TX) and 11 (RX),
+ and the LCD is connected via I2C.
+
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+#include <SoftwareSerial.h>
+
+SoftwareSerial bluetoothSerial(10, 11);  // RX, TX for Bluetooth
+LiquidCrystal_I2C lcd(0x27, 16, 2);       // I2C address 0x27, 16 column and 2 rows
+
+void setup() {
+  lcd.begin(16, 2);
+  lcd.print("Bluetooth Demo");
+
+  bluetoothSerial.begin(9600);
+}
+
+void loop() {
+  if (bluetoothSerial.available() > 0) {
+    char incomingChar = bluetoothSerial.read();
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Received: ");
+    lcd.setCursor(0, 1);
+    lcd.print(incomingChar);
+  }
+}
+5. Pair Your Mobile Phone with HC-05:
+Enable Bluetooth on your mobile phone.
+Scan for devices and pair with the HC-05 module.
+6. Upload the Code to Arduino:
+Connect your Arduino to your computer using a USB cable.
+Select the correct board and port in the Arduino IDE.
+Upload the code to your Arduino.
+7. Test the Setup:
+Send data from your mobile phone via Bluetooth to the HC-05 module.
+The received data should be displayed on the LCD.
+This is a basic example
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+//  Installation of Arduino IDE
+STEP 01:
+VISIT https://www.arduino.cc/
+
+
+
+STEP 02:
+GOTO SOFTWARE SECTION(TAB). 
+https://www.arduino.cc/en/software
+
+STEP 03:
+GOTO DOWNLOAD SECTION.
+
+STEP 04:
+USE EITHER:
+*************Arduino Web Editor******************
+
+Start coding online and save your sketches
+in the cloud. 
+The most up-to-date version of the IDE includes 
+all libraries and also supports new Arduino boards.
+
+OR
+
+
+CHECK OUT ------->>>>>>
+
+DOWNLOAD OPTIONS
+->Windows
+->Win 10 and newer, 64 bits
+
+->Windows
+->MSI installer
+
+->Windows
+ZIP file
+
+->Linux
+->AppImage 64 bits (X86-64)
+
+->Linux
+->ZIP file 64 bits (X86-64)
+
+->macOS
+->Intel, 10.14: “Mojave” or newer, 64 bits
+
+->macOS
+Apple Silicon, 11: “Big Sur” or newer, 64 bits
+
+
+
+STEP 05:
+CLICK ON ANY OF ABOVE ACCORDING TO YOUR OS MACHINE
+
+
+
+STEP 06:
+CLICK ON JUST DOWNLOAD
+YOU WILL GET A MSI INSTALLER OR ZIP FOLDER.
+
+
+
+STEP 07:
+INSTALL THE PACKAGE ON YOUR MACHINE.
+
+YOUR ARDUINO IDE WILL BE INSTALLED ON MACHINE.
+

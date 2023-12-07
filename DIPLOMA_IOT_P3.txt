@@ -1,0 +1,41 @@
+//  Interfacing Light Dependent Resistor (LDR) and LED, displaying automatic night lamp  
+
+/*
+Connections:
+
+Connect one leg of the LDR to the 5V pin on the Arduino.
+Connect the other leg of the LDR to one leg of the resistor.
+Connect the other leg of the resistor to the A0 pin on the Arduino.
+Connect the short leg (cathode) of the LED to a digital pin on the Arduino (e.g., D2).
+Connect the long leg (anode) of the LED through a current-limiting resistor (around 220 ohms) to the GND pin on the Arduino.
+*/
+
+
+
+const int ldrPin = A0;  // LDR connected to analog pin A0
+const int ledPin = 2;   // LED connected to digital pin D2
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin);  // Read LDR value (0 to 1023)
+
+  Serial.print("LDR Value: ");
+  Serial.println(ldrValue);
+
+  // Adjust the threshold value based on ambient light conditions
+  int threshold = 500;
+
+  if (ldrValue < threshold) {
+    digitalWrite(ledPin, HIGH);  // Turn on the LED
+    Serial.println("Dark, Turning ON LED");
+  } else {
+    digitalWrite(ledPin, LOW);   // Turn off the LED
+    Serial.println("Light, Turning OFF LED");
+  }
+
+  delay(1000);  // Add a delay to prevent rapid switching due to sensor noise
+}

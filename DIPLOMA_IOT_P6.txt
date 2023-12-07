@@ -1,0 +1,71 @@
+// Interfacing Air Quality Sensor-pollution (e.g. MQ135) - display data on LCD, switch on LED  
+when data sensed is higher than specified value.
+
+/*
+Components Needed:
+Arduino board
+MQ135 air quality sensor
+16x2 LCD display
+LED
+Resistor for the LED (e.g., 220Ω)
+Jumper wires
+Connect the MQ135 sensor to the Arduino.
+Connect the LCD to the Arduino.
+Connect the LED to a digital pin on the Arduino
+*/
+
+#include <LiquidCrystal_I2C.h>
+
+// Include libraries for the LCD and MQ135
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_MQ135.h>
+
+// Pin configuration
+const int ledPin = 13; // Digital pin for the LED
+const int thresholdValue = 500; // Set your threshold value here
+
+// Create an instance of the Adafruit_MQ135 class
+Adafruit_MQ135 mq135 = Adafruit_MQ135(0);
+
+// Create an instance of the LiquidCrystal_I2C class
+LiquidCrystal_I2C lcd(0x27, 16, 2); // Change the address if necessary
+
+void setup() {
+  // Initialize LCD
+  lcd.begin(16, 2);
+
+  // Initialize Serial Monitor for debugging
+  Serial.begin(9600);
+
+  // Set LED pin as output
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Read the air quality value from the sensor
+  float airQuality = mq135.readCO2();
+
+  // Display the air quality value on the LCD
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Air Quality:");
+  lcd.setCursor(0, 1);
+  lcd.print(airQuality);
+
+  // Check if the air quality is above the threshold
+  if (airQuality > thresholdValue) {
+    // Turn on the LED
+    digitalWrite(ledPin, HIGH);
+  } else {
+    // Turn off the LED
+    digitalWrite(ledPin, LOW);
+  }
+
+  // Print the air quality value to Serial Monitor for debugging
+  Serial.print("Air Quality: ");
+  Serial.println(airQuality);
+
+  // Delay for a moment before the next reading
+  delay(1000);
+}

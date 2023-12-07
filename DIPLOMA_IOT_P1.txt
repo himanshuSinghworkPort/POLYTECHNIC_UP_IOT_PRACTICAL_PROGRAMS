@@ -1,0 +1,20 @@
+// Interfacing Light Emitting Diode (LED)- Blinking LED  
+
+
+// Write a program to Blink default Light Emitting Diode(LED) on Arduino board with the
+delay of 2 sec.
+
+
+// DIGITAL PIN 13 OF ARDUINO BOARD WILL BE CONNECTED TO ANODE LONGER LEG OF LED.
+// GND OF ARDUINO BOARD WILL BE CONNECTED TO CATHODE SORTER LEG OF LED
+void setup() 
+{  
+pinMode(13, OUTPUT);
+}
+void loop() 
+{
+digitalWrite(13, HIGH);
+delay(2000);
+digitalWrite(13, LOW);
+delay(2000);
+}
